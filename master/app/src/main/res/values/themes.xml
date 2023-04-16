@@ -22,4 +22,6 @@
     <style name="Theme.MasterDetail.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MasterDetail.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 </resources>
