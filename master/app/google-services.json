@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "189424431154",
+    "project_id": "masterdetail-fba4f",
+    "storage_bucket": "masterdetail-fba4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189424431154:android:40dc92e9cbed8b03d8cc2b",
+        "android_client_info": {
+          "package_name": "com.atejeda.masterdetail"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189424431154-7fakh4dhs3kni9kprmk5icg1tgr0rltp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.atejeda.masterdetail",
+            "certificate_hash": "d3e491771593cd9abde5c2ba56d2a8c46b6fe708"
+          }
+        },
+        {
+          "client_id": "189424431154-d1k6k9eiq37ihedic15qrv1812q87049.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATEggcCmDhPPJb6kyTzT8ZTkZg7Ma2hEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189424431154-d1k6k9eiq37ihedic15qrv1812q87049.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

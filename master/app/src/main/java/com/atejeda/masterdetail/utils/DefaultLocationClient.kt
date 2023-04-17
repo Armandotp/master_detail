@@ -6,6 +6,7 @@ import android.location.Location
 import android.location.LocationManager
 import com.google.android.gms.location.LocationRequest
 import android.os.Looper
+import com.atejeda.masterdetail.ui.interfaces.LocationClient
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult

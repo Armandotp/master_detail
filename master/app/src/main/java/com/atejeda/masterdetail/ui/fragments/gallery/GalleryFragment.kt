@@ -1,4 +1,4 @@
-package com.atejeda.masterdetail.ui.ui.gallery
+package com.atejeda.masterdetail.ui.fragments.gallery
 
 import android.os.Bundle
 import android.view.LayoutInflater

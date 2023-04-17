@@ -5,6 +5,7 @@ import android.Manifest
 import android.R.attr.theme
 import android.content.Context
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
@@ -21,7 +22,7 @@ fun ImageView.load(url:String?,name:String){
         if(name.isNullOrEmpty()){
             ResourcesCompat.getDrawable(resources, R.mipmap.ic_profile,null)
         }else{
-            loadTextImage(name)
+            loadTextImage(name,resources)
         }
         Glide.with(this.context).load(url).error(icon).into(this)
     }else{
@@ -29,23 +30,38 @@ fun ImageView.load(url:String?,name:String){
             if(name.isNullOrEmpty()){
                 ResourcesCompat.getDrawable(resources, R.mipmap.ic_profile,null)
             }else{
-                loadTextImage(name)
+                loadTextImage(name,resources)
             }
         this.setImageDrawable(icon)
     }
 }
 
-private fun loadTextImage(name: String): Drawable {
+private fun loadTextImage(name: String,resources: Resources): Drawable {
+    if(!name.first().toString().isLettersOnly()) return ResourcesCompat.getDrawable(resources, R.mipmap.ic_profile,null)!!
     var array = name.split(" ")
     var letters = ""
     array.forEach {
-        letters += it.first().uppercase()
+        if(it.isLettersOnly()){
+            letters += it.first().uppercase()
+        }
     }
+    if(letters.isNullOrEmpty()) return ResourcesCompat.getDrawable(resources, R.mipmap.ic_profile,null)!!
+
     val generator: ColorGenerator = ColorGenerator.MATERIAL
     val color: Int = generator.getColor(name)
     val firstLetter = "$letters"
     return TextDrawable.builder()
         .buildRound(firstLetter, color)
+}
+
+fun String.isLettersOnly(): Boolean {
+    val len = this.length
+    for (i in 0 until len) {
+        if (!this[i].isLetter()) {
+            return false
+        }
+    }
+    return true
 }
 
 fun Context.hasLocationPermission(): Boolean {

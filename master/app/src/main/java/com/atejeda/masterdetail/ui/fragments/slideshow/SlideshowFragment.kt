@@ -1,4 +1,4 @@
-package com.atejeda.masterdetail.ui.ui.slideshow
+package com.atejeda.masterdetail.ui.fragments.slideshow
 
 import android.os.Bundle
 import android.view.LayoutInflater

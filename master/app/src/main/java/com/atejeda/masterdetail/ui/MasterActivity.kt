@@ -1,8 +1,8 @@
 package com.atejeda.masterdetail.ui
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.snackbar.Snackbar
@@ -10,19 +10,20 @@ import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.atejeda.masterdetail.R
 import com.atejeda.masterdetail.databinding.ActivityMasterBinding
-import com.atejeda.masterdetail.ui.ui.home.HomeFragment
-import com.atejeda.masterdetail.ui.ui.location.LocationFragment
-import com.atejeda.masterdetail.utils.LocationService
+import com.atejeda.masterdetail.ui.fragments.home.HomeFragment
+import com.atejeda.masterdetail.ui.fragments.location.LocationFragment
+import com.atejeda.masterdetail.ui.fragments.pokemon.PokemonFragment
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class MasterActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -40,10 +41,7 @@ class MasterActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         toolbar = binding.appBarMaster.toolbar
         setSupportActionBar(toolbar)
 
-        binding.appBarMaster.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
         drawerLayout = binding.drawerLayout
         navView = binding.navView
         navView.itemIconTintList = null;
@@ -54,18 +52,11 @@ class MasterActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         toggle.syncState()
         navView.setNavigationItemSelectedListener(this)
 
-
-        var service = Intent(this, LocationService::class.java).apply {
-            action = LocationService.ACTION_START
-            startService(this)
-        }
-
-        replaceFragment(LocationFragment())
+        replaceFragment(HomeFragment())
     }
 
     private fun replaceFragment(fragment: Fragment){
         try {
-
             val fragmentTransaction = supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.nav_host_fragment_content_master, fragment)
             fragmentTransaction.addToBackStack(null)
@@ -80,6 +71,22 @@ class MasterActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav1 -> {
+                replaceFragment(HomeFragment())
+            }
+            R.id.nav2 -> {
+                replaceFragment(PokemonFragment())
+            }
+            R.id.nav3 -> {
+                replaceFragment(LocationFragment())
+            }
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onBackPressed() {
+        this.finish()
     }
 }
