@@ -1,5 +1,6 @@
 package com.atejeda.masterdetail.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -18,6 +19,8 @@ import androidx.fragment.app.Fragment
 import com.atejeda.masterdetail.R
 import com.atejeda.masterdetail.databinding.ActivityMasterBinding
 import com.atejeda.masterdetail.ui.ui.home.HomeFragment
+import com.atejeda.masterdetail.ui.ui.location.LocationFragment
+import com.atejeda.masterdetail.utils.LocationService
 
 
 class MasterActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -51,7 +54,13 @@ class MasterActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         toggle.syncState()
         navView.setNavigationItemSelectedListener(this)
 
-        replaceFragment(HomeFragment())
+
+        var service = Intent(this, LocationService::class.java).apply {
+            action = LocationService.ACTION_START
+            startService(this)
+        }
+
+        replaceFragment(LocationFragment())
     }
 
     private fun replaceFragment(fragment: Fragment){
@@ -71,6 +80,6 @@ class MasterActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        TODO("Not yet implemented")
+        return true
     }
 }

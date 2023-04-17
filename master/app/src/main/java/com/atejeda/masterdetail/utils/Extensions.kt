@@ -1,9 +1,13 @@
 package com.atejeda.masterdetail.utils
 
 
+import android.Manifest
 import android.R.attr.theme
+import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
@@ -42,4 +46,15 @@ private fun loadTextImage(name: String): Drawable {
     val firstLetter = "$letters"
     return TextDrawable.builder()
         .buildRound(firstLetter, color)
+}
+
+fun Context.hasLocationPermission(): Boolean {
+    return ContextCompat.checkSelfPermission(
+        this,
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED &&
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
 }
